@@ -43,7 +43,7 @@ if (CMAKE_VERSION VERSION_GREATER "3.1")
 set_property(TARGET sioclient PROPERTY CXX_STANDARD 11)
 set_property(TARGET sioclient PROPERTY CXX_STANDARD_REQUIRED ON)
 else()
-set_property(TARGET sioclient APPEND_STRING PROPERTY COMPILE_FLAGS "-std=c++11")
+set_property(TARGET sioclient APPEND_STRING PROPERTY COMPILE_FLAGS "-std=c++11 -fPIC")
 endif()
 if(BUILD_SHARED_LIBS)
 set_target_properties(sioclient

@@ -7,3 +7,8 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 libsioclient.a
+libsioclient_tls.a
+.saipm/
+build_modules
+build
+dist

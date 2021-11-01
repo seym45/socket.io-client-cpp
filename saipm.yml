@@ -1,0 +1,44 @@
+name: socket-io-client-cpp
+
+tasks:
+  build:
+    - - bash
+      - scripts/build.saipm.sh
+      - ${platform}
+      - ${build_dir}
+      - ${module_dir}/toolchain/${platform}.toolchain
+      - ${module_dir}/openssl
+      - 
+
+platforms:
+  ubuntu:
+    global_dependencies:
+      toolchain: latest
+    dependencies:
+      openssl: latest
+      socket-io-client-cpp: latest
+  RPi: {}
+  jetson: {}
+  iOS: {}
+  android:
+    global_dependencies:
+      ndk: https://dl.google.com/android/repository/android-ndk-r21b-linux-x86_64.zip
+    default_task: clean arm64-v8a armeabi-v7a
+    tasks:
+      clean: rm -rf ${build_dir} ${build_dir}.${platform}
+      arm64-v8a:
+        - - bash
+          - scripts/build.android.sh
+          - ${build_dir}
+          - ${module_dir}/ndk/android-ndk-r21b
+          - ${build_dir}.${platform}
+          - arm64-v8a
+          - 29 # API level
+      armeabi-v7a:
+        - - bash
+          - scripts/build.android.sh
+          - ${build_dir}
+          - ${module_dir}/ndk/android-ndk-r21b
+          - ${build_dir}.${platform}
+          - armeabi-v7a
+          - 29 # API level
